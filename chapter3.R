@@ -53,12 +53,17 @@ plot(x, y)
 
 rm(list=ls())
 
+hp <- read.csv("http://raw.github.com/jeremymiles/arc/master/housePrices.csv")
+
+
+raters <- read.csv("http://raw.github.com/jeremymiles/arc/master/houseRaters.csv")
+
+
 
 
 z0 <- fisherz(0)
 zneg5 <- fisherz(-0.5)
-zpos2 <- fisherz(0.2)
-zpos9 <- fisherz(0.9)
+zpos2 <- fisherz(0.2)zpos9 <- fisherz(0.9)
 
 n <- 30
 
@@ -87,8 +92,64 @@ lines(  xr, hxpos9, type="l", lty=3, lwd=2)
 
 
 
-hp <- read.csv("https://dl.dropboxusercontent.com/u/24381951/arcdata/housePrices.csv")
 
 names(hp)
 
 
+library(psych)
+alpha(d[1:6])
+alpha(d[1:12])
+
+library(CTT)
+mean(sapply(1:1000, function(x) {
+    x <- sample(1:12, 6)
+  r <- spearman.brown( cor(apply(d[x], 1, sum), apply(d[-x], 1, sum)), input=2)$r.new
+  }
+) )
+
+library(QuantPsyc)
+install.packages("psychometric") 
+library(psychometric) 
+hp <- read.csv("http://raw.github.com/jeremymiles/arc/master/housePrices.csv")
+
+r <- cor(hp$list.price, hp$beds)
+n <- nrow(hp)
+CIr(r=r, n=n)
+
+r <- 
+n <- 
+CIr(r=cor(hp$list.price, hp$beds), n=nrow(hp))
+
+cor(hp$list.price, hp$sqft, method="kendall")
+cor.test(hp$list.price, hp$sqft, method="kendall")
+cor(hp[1:6, ]$list.price, hp[1:6, ]$sqft, method="kendall")
+
+
+cor(hp$list.price, hp$sqft, method="spearman")
+cor(rank(hp$list.price), rank(hp$sqft))
+cor(hp$list.price, hp$sqft)
+cor.test(hp$list.price, hp$sqft, method="spearman")
+cor.test(hp$list.price, hp$sqft, method="spearman", exact=FALSE)
+
+cor(hp$list.price, hp$sqft, method="kendall")
+cor.test(hp$list.price, hp$sqft, method="kendall")
+
+
+
+shortHP <- hp[ 1:10, ]
+
+cor.test(shortHP$beds, shortHP$list.price )
+
+CIr(0.7608877, n=10)
+
+
+
+#load sem for polychorics
+install.packages("polycor")
+library(polycor)
+polychor(hp$beds, hp$parking.spots)
+cor(hp$beds, hp$parking.spots)
+
+
+
+ghq <- read.csv("http://raw.github.com/jeremymiles/arc/master/ghq.csv")
