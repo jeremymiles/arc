@@ -280,3 +280,44 @@ cor(shortHP$list.price, shortHP$sqft)
 fit1 <- lm(list.price~sqft, data=shortHP)
 summary(fit1)
 lm.beta(fit1)
+
+
+
+
+###Section 4
+##Section4.1 - covariance
+hp <- read.csv("http://raw.github.com/jeremymiles/arc/master/housePrices.csv")
+#Shorten the data to the first five - and only list.price and sqft
+shortHp <- hp[1:5, c("list.price", "sqft")]
+
+#Get the difference between each value and the mean.
+shortHp$"x-xbar" <- shortHp$sqft - mean(shortHp$sqft)
+shortHp$"y-ybar" <- shortHp$list.price - mean(shortHp$list.price)
+mean(shortHp$sqft)
+mean(shortHp$list.price)
+shortHp$"x-xbar * y-ybar" <- shortHp$"x-xbar" * shortHp$"y-ybar"
+round(shortHp, 2)
+
+
+covXY <- sum(shortHp$"x-xbar * y-ybar") / 4
+covXY / sqrt(var(shortHp$sqft )* var(shortHp$list.price ))
+cor(shortHp$sqft, shortHp$list.price )
+
+cov(shortHp$sqft, shortHp$list.price )
+
+#Create temporary random error variable with mean 0 and add it to the list.price.
+corXY <- covXY / (sqrt(var(shortHp$sqft) * var(shortHp$list.price)))
+
+#Get the standard deviations, to calculate the slope.
+sdx <- sd(shortHp$sqft)
+sdy <- sd(shortHp$list.price)
+
+b <- corXY * sdy / sdx
+b
+#Calculate the intercept
+meany <- mean(shortHp$list.price)
+meany
+meanx <- mean(shortHp$sqft)
+meanx
+c <-  meany - b * meanx
+c
