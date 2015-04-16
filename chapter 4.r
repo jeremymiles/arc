@@ -210,9 +210,11 @@ summary(fitBW)
 
 
 #generate random data for stepwise regression
-random.data <- as.data.frame(matrix(runif(501000), nrow=1000))
-names(random.data) <- c("y", paste0("x", 1:500))
+set.seed(1234)
+random.data <- as.data.frame(matrix(runif(5000), nrow=100))
+names(random.data) <- c("y", paste0("x", 1:49))
 
 random.fit <- lm(y ~ . , data=random.data)
 #This takes a while to run - be careful
-step(random.fit)
+random.fit.step <- step(random.fit)
+summary(random.fit.step)
