@@ -43,9 +43,12 @@ dev.off()
 #Read deprivation data
 
 imd <- read.csv("http://raw.github.com/jeremymiles/arc/master/england-imd.csv")
+<<<<<<< HEAD
 table(imd$region)
 by(imd$imd.score, imd$region, mean)
 
+=======
+>>>>>>> origin/master
 summary(lm(imd.score ~ region, data=imd))
 table(imd$region)
 
@@ -59,6 +62,7 @@ imd$d7yath	  <- imd$region == "Yorkshire and The Humber"
 imd$d8em	    <- imd$region == "East Midlands"  
 imd$d9ee      <- imd$region == "East of England"
 
+<<<<<<< HEAD
 fit.dummy1 <- lm(imd.score ~ d1london + d2se + d3sw + d4wm + d5nw + d6ne + d7yath + d8em + d9ee, data=imd)
 summary(fit.dummy1 )
 fit.dummy2 <- lm(imd.score ~  d2se + d3sw + d4wm + d5nw + d6ne + d7yath + d8em + d9ee, data=imd)
@@ -149,3 +153,11 @@ plot(primedMeans, type="l", ylim=c(70, 100), lty=1, lwd=2, xaxt="n", xlab="Group
 lines(unprimedMeans,  lty=2, lwd=2)
 axis(1, at=1:2, labels=c("Different Context", "Same Context"))
 legend("topleft", legend=c("Primed words", "Unprimed words"), lwd=2, lty=c(1, 2), border="white")
+=======
+fit2 <- lm(imd.score ~ d2se + d3sw + d4wm + d5nw + d6ne + d7yath + d8em + d9ee, data=imd)
+summary(fit2)
+
+
+data.frame(describeBy(imd$imd.score, imd$region, mat=TRUE))
+
+>>>>>>> origin/master
