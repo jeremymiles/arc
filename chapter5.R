@@ -310,6 +310,11 @@ hcvar.fit8 <- hccm(fit8)
 se.fit8 <- sqrt(diag(hcvar.fit8))
 se.fit8
 
+library(lmtest)
+
+coeftest(fit8,  vcov = hccm(fit8))
+
+
 #Get confidence intervals 
 tCrit <- qt(0.025, df= fit8$df.residual,  lower.tail=FALSE)
 upperCI  <- summary(fit8)$coefficients[,1]  + tCrit * se.fit8

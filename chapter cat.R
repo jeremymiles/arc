@@ -1,4 +1,5 @@
 
+library(psych)
 setwd("C:/Users/Jeremy/Dropbox/Applying Reg and Corr/arcdata/arc")
 
 #Chapter 5a (or whatever it is): categorical data
@@ -30,3 +31,29 @@ text(x=1.8, y=means[1] + 0.2,labels= paste0("Slope is increase value of y \n whe
                                             round(means[1], 2), "-", round(means[2], 2)," = ", 
                                             round(means[2]-means[1], 2)), pos=1)
 dev.off()
+
+
+
+
+#Read deprivation data
+
+imd <- read.csv("http://raw.github.com/jeremymiles/arc/master/england-imd.csv")
+summary(lm(imd.score ~ region, data=imd))
+table(imd$region)
+
+imd$d1london  <- imd$region == "London"
+imd$d2se	    <- imd$region == "South East"   
+imd$d3sw	    <- imd$region == "South West"
+imd$d4wm	    <- imd$region == "West Midlands"
+imd$d5nw	    <- imd$region == "North West"
+imd$d6ne	    <- imd$region == "North East"
+imd$d7yath	  <- imd$region == "Yorkshire and The Humber"
+imd$d8em	    <- imd$region == "East Midlands"  
+imd$d9ee      <- imd$region == "East of England"
+
+fit2 <- lm(imd.score ~ d2se + d3sw + d4wm + d5nw + d6ne + d7yath + d8em + d9ee, data=imd)
+summary(fit2)
+
+
+data.frame(describeBy(imd$imd.score, imd$region, mat=TRUE))
+
