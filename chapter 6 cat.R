@@ -43,9 +43,18 @@ dev.off()
 #Read deprivation data
 
 imd <- read.csv("http://raw.github.com/jeremymiles/arc/master/england-imd.csv")
+<<<<<<< HEAD
 table(imd$region)
 by(imd$imd.score, imd$region, mean)
 
+=======
+<<<<<<< HEAD
+table(imd$region)
+by(imd$imd.score, imd$region, mean)
+
+=======
+>>>>>>> origin/master
+>>>>>>> f77287da7207b1f8826942b323ea1d39ad3fe282
 summary(lm(imd.score ~ region, data=imd))
 table(imd$region)
 
@@ -59,6 +68,10 @@ imd$d7yath	  <- imd$region == "Yorkshire and The Humber"
 imd$d8em	    <- imd$region == "East Midlands"  
 imd$d9ee      <- imd$region == "East of England"
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> f77287da7207b1f8826942b323ea1d39ad3fe282
 fit.dummy1 <- lm(imd.score ~ d1london + d2se + d3sw + d4wm + d5nw + d6ne + d7yath + d8em + d9ee, data=imd)
 summary(fit.dummy1 )
 fit.dummy2 <- lm(imd.score ~  d2se + d3sw + d4wm + d5nw + d6ne + d7yath + d8em + d9ee, data=imd)
@@ -80,6 +93,7 @@ data.frame(describeBy(imd$imd.score, imd$region, mat=TRUE))
 
 
 
+<<<<<<< HEAD
 ##Dummy code with no intercept
 fit.dummy4 <- lm(imd.score ~  region - 1 , data=imd)
 summary(fit.dummy4)
@@ -112,11 +126,17 @@ fit.effect1 <- lm(imd.score ~   e1.2se + e1.3sw +
                 e1.4wm + e1.5nw +e1.6ne + e1.7yath + e1.8em + e1.9ee , data=imd)
 summary(fit.effect1)
 
+=======
+>>>>>>> f77287da7207b1f8826942b323ea1d39ad3fe282
 
 ###Effect coding 
 imd$e9.1london  <- imd$region == "London"
 imd$e9.2se      <- imd$region == "South East"   
+<<<<<<< HEAD
 imd$e9.3sw	    <- imd$region == "South West"
+=======
+imd$e9..3sw	    <- imd$region == "South West"
+>>>>>>> f77287da7207b1f8826942b323ea1d39ad3fe282
 imd$e9.4wm	    <- imd$region == "West Midlands"
 imd$e9.5nw	    <- imd$region == "North West"
 imd$e9.6ne	    <- imd$region == "North East"
@@ -124,6 +144,7 @@ imd$e9.7yath	  <- imd$region == "Yorkshire and The Humber"
 imd$e9.8em	    <- imd$region == "East Midlands"  
 imd$e9.9ee      <- imd$region == "East of England"
 
+<<<<<<< HEAD
 
 imd$e9.1london <- ifelse(imd$region == "East of England", -1, imd$e9.1london)
 imd$e9.2se      <- ifelse(imd$region == "East of England", -1, imd$e9.2se)
@@ -134,10 +155,26 @@ imd$e9.6ne      <- ifelse(imd$region == "East of England", -1, imd$e9.6ne)
 imd$e9.7yath    <- ifelse(imd$region == "East of England", -1, imd$e9.7yath)
 imd$e9.8em      <- ifelse(imd$region == "East of England", -1, imd$e9.8em)
 imd$e9.9ee      <- ifelse(imd$region == "East of England", -1, imd$e9.9ee)
+=======
+imd$e9.1london  <- ifelse(imd$region == "East of England", -1, imd$e9.11london)
+imd$e9.2se      <- ifelse(imd$region == "East of England", -1, imd$e9.12se)
+imd$e9.3sw      <- ifelse(imd$region == "East of England", -1, imd$e9.13sw)
+imd$e9.4wm      <- ifelse(imd$region == "East of England", -1, imd$e9.14wm)
+imd$e9.5nw      <- ifelse(imd$region == "East of England", -1, imd$e9.15nw)
+imd$e9.6ne      <- ifelse(imd$region == "East of England", -1, imd$e9.16ne)
+imd$e9.7yath    <- ifelse(imd$region == "East of England", -1, imd$e9.17yath)
+imd$e9.8em      <- ifelse(imd$region == "East of England", -1, imd$e9.18em)
+imd$e9.9ee      <- ifelse(imd$region == "East of England", -1, imd$e9.19ee)
+
+fit.effect9 <- lm(imd.score ~  e9.1london + e9.2se + e9.3sw + 
+                e9.4wm + e9.5nw +e6ne + e7yath + e8em , data=imd)
+summary(fit.effect1)
+>>>>>>> f77287da7207b1f8826942b323ea1d39ad3fe282
 
 
 
 
+<<<<<<< HEAD
 fit.effect9 <- lm(imd.score ~   e9.1london + e9.2se + e9.3sw + 
                     e9.4wm + e9.5nw +e9.6ne + e9.7yath + e9.8em , data=imd)
 summary(fit.effect9)
@@ -145,6 +182,35 @@ summary(fit.effect9)
 
 
 
+=======
+
+
+
+###Effect coding 
+imd$e9.1london  <- imd$region == "London"
+imd$e9.2se      <- imd$region == "South East"   
+imd$e9..3sw      <- imd$region == "South West"
+imd$e9.4wm	    <- imd$region == "West Midlands"
+imd$e9.5nw	    <- imd$region == "North West"
+imd$e9.6ne	    <- imd$region == "North East"
+imd$e9.7yath	  <- imd$region == "Yorkshire and The Humber"
+imd$e9.8em	    <- imd$region == "East Midlands"  
+imd$e9.9ee      <- imd$region == "East of England"
+
+imd$e9.1london  <- ifelse(imd$region == "East of England", -1, imd$e9.11london)
+imd$e9.2se  <- ifelse(imd$region == "East of England", -1, imd$e9.12se)
+imd$e9.3sw  <- ifelse(imd$region == "East of England", -1, imd$e9.13sw)
+imd$e9.4wm  <- ifelse(imd$region == "East of England", -1, imd$e9.14wm)
+imd$e9.5nw  <- ifelse(imd$region == "East of England", -1, imd$e9.15nw)
+imd$e9.6ne  <- ifelse(imd$region == "East of England", -1, imd$e9.16ne)
+imd$e9.7yath  <- ifelse(imd$region == "East of England", -1, imd$e9.17yath)
+imd$e9.8em  <- ifelse(imd$region == "East of England", -1, imd$e9.18em)
+imd$e9.9ee  <- ifelse(imd$region == "East of England", -1, imd$e9.19ee)
+
+fit.effect9 <- lm(imd.score ~  e9.1london + e9.2se + e9.3sw + 
+                    e9.4wm + e9.5nw +e6ne + e7yath + e8em , data=imd)
+summary(fit.effect1)
+>>>>>>> f77287da7207b1f8826942b323ea1d39ad3fe282
 
 
 
@@ -152,12 +218,16 @@ summary(fit.effect9)
 #Figure 3.14 - interaction graph
 
 d <- read.csv("http://raw.github.com/jeremymiles/arc/master/implicit words.csv")
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> f77287da7207b1f8826942b323ea1d39ad3fe282
 primedMeans <- tapply( d$primed, d$group, mean)
 unprimedMeans <- tapply( d$unprimed, d$group, mean)
 plot(primedMeans, type="l", ylim=c(70, 100), lty=1, lwd=2, xaxt="n", xlab="Group",ylab="Mean Score")
 lines(unprimedMeans,  lty=2, lwd=2)
+<<<<<<< HEAD
 axis(1, at=1:2, labels=c("Different catext", "Same catext"))
 legend("topleft", legend=c("Primed words", "Unprimed words"), lwd=2, lty=c(1, 2), border="white")
 
@@ -243,3 +313,15 @@ lines(both.preds$fit.cat, lwd=2, col="red")
 lines(rep(1:6), both.preds$lwr.cat, col="red")
 lines(rep(1:6), both.preds$upr.cat, col="red")
 
+=======
+axis(1, at=1:2, labels=c("Different Context", "Same Context"))
+legend("topleft", legend=c("Primed words", "Unprimed words"), lwd=2, lty=c(1, 2), border="white")
+=======
+fit2 <- lm(imd.score ~ d2se + d3sw + d4wm + d5nw + d6ne + d7yath + d8em + d9ee, data=imd)
+summary(fit2)
+
+
+data.frame(describeBy(imd$imd.score, imd$region, mat=TRUE))
+
+>>>>>>> origin/master
+>>>>>>> f77287da7207b1f8826942b323ea1d39ad3fe282
